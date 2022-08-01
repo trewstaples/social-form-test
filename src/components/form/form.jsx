@@ -18,9 +18,14 @@ const keyboardLayout = {
   inline: 'inline',
 }
 
+export const createNewButton = label => {
+  return { value: label }
+}
+
 const Form = () => {
   const [channel, setChannel] = useState('')
-  const [keyboardView, setKeyBoardView] = useState(keyboardLayout.standart)
+  const [, setKeyBoardView] = useState(keyboardLayout.standart)
+  const [buttons, setButtons] = useState([])
 
   const onChannelChange = evt => {
     setChannel(evt.target.value)
@@ -32,8 +37,10 @@ const Form = () => {
     )
   }
 
-  const onAddFastButtonAdded = () => {
-    console.log(0)
+  const onButtonAdded = text => {
+    const newButton = createNewButton(text)
+
+    return setButtons([...buttons, newButton])
   }
 
   return (
@@ -52,21 +59,9 @@ const Form = () => {
 
           <KeyboardSwitch onChange={onKeyboardChange} />
 
-          <ButtonAddForm />
+          <div className='main__buttons'></div>
 
-          <div className='main__add-fast-button-wrap'>
-            <input type='text' className='text' /> <br />
-            <input
-              type='submit'
-              className='main__add-button'
-              value='  Добавить кнопку с быстрым ответом'
-            />
-          </div>
-
-          <div className='main__add-url-button-wrap'>
-            <input type='text' className='text' /> <br />
-            <button className='main__add-url-button'>Добавить добавить кнопку ссылку</button>
-          </div>
+          <ButtonAddForm onButtonAdded={onButtonAdded} />
         </form>
       </div>
     </div>
