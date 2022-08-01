@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { ChannelSelect } from '../channel-select'
 import { KeyboardSwitch } from '../keyboard-switch'
+import { ButtonAddForm } from '../button-add-form'
 
 import './form.css'
 
@@ -50,6 +51,8 @@ const Form = () => {
           </div>
 
           <KeyboardSwitch onChange={onKeyboardChange} />
+
+          <ButtonAddForm />
 
           <div className='main__add-fast-button-wrap'>
             <input type='text' className='text' /> <br />

@@ -1,3 +1,5 @@
+import './keyboard-switch.css'
+
 const KeyboardSwitch = ({ onKeyboardChange }) => {
   return (
     <div className='main__switch-button-wrap'>
