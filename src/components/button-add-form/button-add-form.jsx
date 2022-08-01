@@ -1,9 +1,11 @@
 import { useState } from 'react'
 
-const ButtonAddForm = ({ onButtonAdded }) => {
+import { keyboardLayout } from '../form/form'
+
+const ButtonAddForm = ({ keyboardMode, onButtonAdded }) => {
   const [formValue, setFormValue] = useState('')
 
-  const onSubmit = evt => {
+  const onClick = evt => {
     evt.preventDefault()
     onButtonAdded(formValue)
     setFormValue('')
@@ -13,18 +15,23 @@ const ButtonAddForm = ({ onButtonAdded }) => {
     setFormValue(evt.target.value)
   }
 
+  const placeholderText =
+    keyboardMode === keyboardLayout.standart
+      ? 'Добавьте кнопку с быстрым ответом'
+      : 'Добавьте кнопку-ссылку'
+
   return (
-    <form className='main__add-form' onSubmit={onSubmit}>
+    <div className='main__add-form'>
       <input
         type='text'
         className='main__add-form-control'
         value={formValue}
         onChange={onLabelChange}
-        placeholder={'Добавьте кнопку'}
+        placeholder={placeholderText}
       />
 
-      <button type='submit' className='btn add-form__button'></button>
-    </form>
+      <input type='submit' className='btn add-form__button' value={'+'} onClick={onClick} />
+    </div>
   )
 }
 

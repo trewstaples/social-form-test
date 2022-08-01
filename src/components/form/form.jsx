@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { ChannelSelect } from '../channel-select'
 import { KeyboardSwitch } from '../keyboard-switch'
+import { ButtonsList } from '../buttons-list'
 import { ButtonAddForm } from '../button-add-form'
 
 import './form.css'
@@ -13,7 +14,7 @@ const textAreaMaxLength = {
   SMS: '',
 }
 
-const keyboardLayout = {
+export const keyboardLayout = {
   standart: 'standart',
   inline: 'inline',
 }
@@ -24,7 +25,7 @@ export const createNewButton = label => {
 
 const Form = () => {
   const [channel, setChannel] = useState('')
-  const [, setKeyBoardView] = useState(keyboardLayout.standart)
+  const [keyboardMode, setKeyboardMode] = useState(keyboardLayout.standart)
   const [buttons, setButtons] = useState([])
 
   const onChannelChange = evt => {
@@ -32,7 +33,7 @@ const Form = () => {
   }
 
   const onKeyboardChange = () => {
-    setKeyBoardView(prevState =>
+    setKeyboardMode(prevState =>
       prevState === keyboardLayout.standart ? keyboardLayout.inline : keyboardLayout.standart
     )
   }
@@ -47,7 +48,7 @@ const Form = () => {
     <div className='container'>
       <div className='main'>
         <form>
-          <ChannelSelect onChange={onChannelChange} />
+          <ChannelSelect onChannelChange={onChannelChange} />
 
           <div className='main__text-wrap'>
             <textarea
@@ -57,11 +58,11 @@ const Form = () => {
             ></textarea>
           </div>
 
-          <KeyboardSwitch onChange={onKeyboardChange} />
+          <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
-          <div className='main__buttons'></div>
+          <ButtonsList buttons={buttons} />
 
-          <ButtonAddForm onButtonAdded={onButtonAdded} />
+          <ButtonAddForm keyboardMode={keyboardMode} onButtonAdded={onButtonAdded} />
         </form>
       </div>
     </div>
