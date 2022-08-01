@@ -1,102 +1,90 @@
 import { useState } from 'react'
-import { FormGroup, FormControlLabel } from '@mui/material'
-import { styled } from '@mui/material/styles'
-import Switch from '@mui/material/Switch'
-import { Select } from '@mui/material'
-import { MenuItem } from '@mui/material'
+import './form.css'
 
 const textAreaMaxLength = {
   VK: '4096',
-  WhatsApp: '1000',
+  WhatsApp: '10',
   Telegram: '4096',
   SMS: '',
 }
 
+const keyboardLayout = {
+  standart: 'standart',
+  inline: 'inline',
+}
+
 const Form = () => {
   const [channel, setChannel] = useState('')
+  const [keyboardView, setKeyBoardView] = useState(keyboardLayout.standart)
 
   const onChannelChange = evt => {
     setChannel(evt.target.value)
   }
 
-  const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-    width: 62,
-    height: 34,
-    padding: 7,
-    '& .MuiSwitch-switchBase': {
-      margin: 1,
-      padding: 0,
-      transform: 'translateX(6px)',
-      '&.Mui-checked': {
-        color: '#fff',
-        transform: 'translateX(22px)',
-        '& .MuiSwitch-thumb:before': {
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            '#fff'
-          )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
-        },
-        '& + .MuiSwitch-track': {
-          opacity: 1,
-          backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-        },
-      },
-    },
-    '& .MuiSwitch-thumb': {
-      backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-      width: 32,
-      height: 32,
-      '&:before': {
-        content: "''",
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        left: 0,
-        top: 0,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-          '#fff'
-        )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
-      },
-    },
-    '& .MuiSwitch-track': {
-      opacity: 1,
-      backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-      borderRadius: 20 / 2,
-    },
-  }))
+  const onKeyboardChange = () => {
+    setKeyBoardView(prevState =>
+      prevState === keyboardLayout.standart ? keyboardLayout.inline : keyboardLayout.standart
+    )
+  }
+
+  const onAddFastButtonAdded = () => {
+    console.log(0)
+  }
 
   return (
-    <FormGroup>
-      <Select value={channel} onChange={onChannelChange}>
-        <MenuItem value={''}>Выберите канал</MenuItem>
-        <MenuItem value={'VK'}>Вконтакте</MenuItem>
-        <MenuItem value={'WhatsApp'}>WhatsApp</MenuItem>
-        <MenuItem value={'Telegram'}>Telegram</MenuItem>
-        <MenuItem value={'SMS'}>SMS</MenuItem>
-      </Select>
-      <FormControlLabel
-        control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-        label='MUI switch'
-      ></FormControlLabel>
-    </FormGroup>
+    <div className='container'>
+      <div className='main'>
+        <form>
+          <div className='main__select-wrap'>
+            <select className='main__select' onChange={onChannelChange}>
+              <option value=''>Выберите канал</option>
+              <option value='VK'>Вконтакте</option>
+              <option value='WhatsApp'>WhatsApp</option>
+              <option value='Telegram'>Telegram</option>
+              <option value='SMS'>SMS</option>
+            </select>
+          </div>
+
+          <div className='main__text-wrap'>
+            <textarea
+              className='main__text'
+              autoComplete='off'
+              maxLength={textAreaMaxLength[channel]}
+            ></textarea>
+          </div>
+
+          {/* {buttons.map(btn => (
+            <div className='main__buttons'>
+              <button className='main__buttons-item'>btn.value</button>
+            </div>
+          ))} */}
+
+          <div className='main__switch-button-wrap'>
+            <span>Standard</span>
+            <label className='switch' onChange={onKeyboardChange}>
+              <input type='checkbox' />
+              <span className='slider'></span>
+            </label>
+            <span>Inline</span>
+          </div>
+
+          <div className='main__add-fast-button-wrap'>
+            <input type='text' className='text' /> <br />
+            <input
+              type='submit'
+              className='main__add-button'
+              value='  Добавить кнопку с быстрым ответом'
+            />
+          </div>
+
+          <div className='main__add-url-button-wrap'>
+            <input type='text' className='text' /> <br />
+            <button className='main__add-url-button'>Добавить добавить кнопку ссылку</button>
+          </div>
+        </form>
+      </div>
+    </div>
   )
 }
-
-/* <form>
-<div>
-  <select onChange={onChannelChange}>
-    <option value=''>Выберите канал</option>
-    <option value='VK'>Вконтакте</option>
-    <option value='WhatsApp'>WhatsApp</option>
-    <option value='Telegram'>Telegram</option>
-    <option value=>SMS</option>
-  </select>
-</div>
-
-<div>
-  <textarea autoComplete='off' maxLength={textAreaMaxLength[channel]}></textarea>
-</div>
-</form> */
 
 export { Form }
