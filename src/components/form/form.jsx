@@ -1,4 +1,8 @@
 import { useState } from 'react'
+
+import { ChannelSelect } from '../channel-select'
+import { KeyboardSwitch } from '../keyboard-switch'
+
 import './form.css'
 
 const textAreaMaxLength = {
@@ -35,15 +39,7 @@ const Form = () => {
     <div className='container'>
       <div className='main'>
         <form>
-          <div className='main__select-wrap'>
-            <select className='main__select' onChange={onChannelChange}>
-              <option value=''>Выберите канал</option>
-              <option value='VK'>Вконтакте</option>
-              <option value='WhatsApp'>WhatsApp</option>
-              <option value='Telegram'>Telegram</option>
-              <option value='SMS'>SMS</option>
-            </select>
-          </div>
+          <ChannelSelect onChange={onChannelChange} />
 
           <div className='main__text-wrap'>
             <textarea
@@ -53,20 +49,7 @@ const Form = () => {
             ></textarea>
           </div>
 
-          {/* {buttons.map(btn => (
-            <div className='main__buttons'>
-              <button className='main__buttons-item'>btn.value</button>
-            </div>
-          ))} */}
-
-          <div className='main__switch-button-wrap'>
-            <span>Standard</span>
-            <label className='switch' onChange={onKeyboardChange}>
-              <input type='checkbox' />
-              <span className='slider'></span>
-            </label>
-            <span>Inline</span>
-          </div>
+          <KeyboardSwitch onChange={onKeyboardChange} />
 
           <div className='main__add-fast-button-wrap'>
             <input type='text' className='text' /> <br />

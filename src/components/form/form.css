@@ -7,7 +7,7 @@
     border: 2px solid orange;
 }
 
-.main__select-wrap,
+.main__channel-select-wrap,
 .main__text-wrap,
 .main__switch-button-wrap,
 .main__add-fast-button-wrap,
@@ -18,7 +18,7 @@
 }
 
 
-.main__select,
+.main__channel-select,
 .main__text {
     width: 90%;
 }
