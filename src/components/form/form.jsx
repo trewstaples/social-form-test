@@ -1,7 +1,15 @@
+import { useState } from 'react'
+
 const Form = () => {
+  const [channel, setChannel] = useState('')
+
+  const onChannelChange = evt => {
+    setChannel(evt.target.value)
+  }
+
   return (
     <form>
-      <select>
+      <select onChange={onChannelChange}>
         <option value=''>Выберите канал</option>
         <option value='VK'>Вконтакте</option>
         <option value='WhatsApp'>WhatsApp</option>
