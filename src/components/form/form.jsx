@@ -45,26 +45,24 @@ const Form = () => {
   }
 
   return (
-    <div className='container'>
-      <div className='main'>
-        <form>
-          <ChannelSelect onChannelChange={onChannelChange} />
+    <div className='main'>
+      <form>
+        <ChannelSelect onChannelChange={onChannelChange} />
 
-          <div className='main__text-wrap'>
-            <textarea
-              className='main__text'
-              autoComplete='off'
-              maxLength={textAreaMaxLength[channel]}
-            ></textarea>
-          </div>
+        <div className='main__text-wrap'>
+          <textarea
+            className='main__text'
+            autoComplete='off'
+            maxLength={textAreaMaxLength[channel]}
+          ></textarea>
+        </div>
 
-          <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
+        <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
-          <ButtonsList buttons={buttons} />
+        <ButtonsList buttons={buttons} />
 
-          <ButtonAddForm keyboardMode={keyboardMode} onButtonAdded={onButtonAdded} />
-        </form>
-      </div>
+        <ButtonAddForm keyboardMode={keyboardMode} onButtonAdded={onButtonAdded} />
+      </form>
     </div>
   )
 }

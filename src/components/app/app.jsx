@@ -2,8 +2,10 @@ import { Form } from '../form'
 
 const App = () => {
   return (
-    <div className='App'>
-      <header className='App-header'></header>
+    <div className='container'>
+      <header className='header'>
+        <h1>Social Form</h1>
+      </header>
       <Form />
     </div>
   )
@@ -11,6 +13,5 @@ const App = () => {
 
 export { App }
 
-//Добавить кнопку добавления text-кнопок с быстрым ответом
 //Добавить кнопку добавления url-кнопок
 //Написать данные для кнопок ?

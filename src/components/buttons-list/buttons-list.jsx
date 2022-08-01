@@ -1,7 +1,7 @@
 const ButtonsList = ({ buttons }) => {
   const elements = buttons.map(btn => {
     return (
-      <button type='button' key={btn.value}>
+      <button type='button' className={'btn'} key={btn.value}>
         {btn.value}
       </button>
     )
