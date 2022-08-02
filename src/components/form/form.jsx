@@ -1,18 +1,12 @@
 import { useState } from 'react'
 
 import { ChannelSelect } from '../channel-select'
+import { TextArea } from '../textarea'
 import { KeyboardSwitch } from '../keyboard-switch'
 import { ButtonsList } from '../buttons-list'
 import { ButtonAddForm } from '../button-add-form'
 
 import './form.css'
-
-const textAreaMaxLength = {
-  VK: '4096',
-  WhatsApp: '10',
-  Telegram: '4096',
-  SMS: '',
-}
 
 export const keyboardLayout = {
   standart: 'standart',
@@ -49,19 +43,14 @@ const Form = () => {
       <form>
         <ChannelSelect onChannelChange={onChannelChange} />
 
-        <div className='main__text-wrap'>
-          <textarea
-            className='main__text'
-            autoComplete='off'
-            maxLength={textAreaMaxLength[channel]}
-          ></textarea>
-        </div>
+        <TextArea channel={channel} />
 
         <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
         <ButtonsList buttons={buttons} />
 
-        <ButtonAddForm keyboardMode={keyboardMode} onButtonAdded={onButtonAdded} />
+        <ButtonAddForm keyboardMode={keyboardLayout.standart} onButtonAdded={onButtonAdded} />
+        <ButtonAddForm keyboardMode={keyboardLayout.inline} onButtonAdded={onButtonAdded} />
       </form>
     </div>
   )
