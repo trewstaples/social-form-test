@@ -41,7 +41,7 @@ const Form = () => {
 
   return (
     <div className='form-wrap'>
-      <h2>Fill the form</h2>
+      <h2>Settings</h2>
       <form>
         <ChannelSelect onChannelChange={onChannelChange} />
 

@@ -1,20 +1,20 @@
 import { Form } from '../form'
 import { Messenger } from '../messenger'
+import { useState } from 'react'
 
 const App = () => {
+  const [messageText, setMessageText] = useState(
+    'приветикопшщаыпощшваопшщоавшщповашщпошщваопшщваопшщваопщшваопшщоавпшщовашщповашщповашщпошщваопщваоповапшщовшщповашщпощшваопшщваопшваоповпщш'
+  )
   return (
     <div className='container'>
       <header className='header'>
         <h1>Social Form</h1>
       </header>
-      <Messenger />
+      <Messenger messageText={messageText} />
       <Form />
     </div>
   )
 }
 
 export { App }
-
-//Попробовать добавить кнопки в textarea
-//Написать логику. Если выбрано отображение standard, то кнопки добавляются снизу от textarea.
-//Если выбрано отображение inline, то кнопки добавляются в саму textarea
