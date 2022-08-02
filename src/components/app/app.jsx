@@ -4,17 +4,28 @@ import { useState } from 'react'
 
 const App = () => {
   const [messageText, setMessageText] = useState('')
+  const [buttons, setButtons] = useState([])
+
+  const createNewButton = label => {
+    return { value: label }
+  }
 
   const onMessageChange = evt => {
     setMessageText(evt.target.value)
+  }
+
+  const onButtonAdded = text => {
+    const newButton = createNewButton(text)
+
+    return setButtons([...buttons, newButton])
   }
   return (
     <div className='container'>
       <header className='header'>
         <h1>Social Form</h1>
       </header>
-      <Messenger messageText={messageText} />
-      <Form onMessageChange={onMessageChange} />
+      <Messenger messageText={messageText} buttons={buttons} />
+      <Form onMessageChange={onMessageChange} onButtonAdded={onButtonAdded} />
     </div>
   )
 }

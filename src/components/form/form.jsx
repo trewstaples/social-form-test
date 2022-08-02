@@ -13,31 +13,20 @@ export const keyboardLayout = {
   inline: 'inline',
 }
 
-export const createNewButton = label => {
-  return { value: label }
-}
-
-const Form = ({ onMessageChange }) => {
+const Form = ({ onMessageChange, onButtonAdded }) => {
   const [channel, setChannel] = useState('')
   const [keyboardMode, setKeyboardMode] = useState(keyboardLayout.standart)
-  const [buttons, setButtons] = useState([])
 
   const onChannelChange = evt => {
     setChannel(evt.target.value)
   }
 
-  const onKeyboardChange = () => {
-    setKeyboardMode(prevState =>
-      prevState === keyboardLayout.standart ? keyboardLayout.inline : keyboardLayout.standart
-    )
-    setButtons([])
-  }
-
-  const onButtonAdded = text => {
-    const newButton = createNewButton(text)
-
-    return setButtons([...buttons, newButton])
-  }
+  // const onKeyboardChange = () => {
+  //   setKeyboardMode(prevState =>
+  //     prevState === keyboardLayout.standart ? keyboardLayout.inline : keyboardLayout.standart
+  //   )
+  //   setButtons([])
+  // }
 
   return (
     <div className='form-wrap'>
@@ -45,7 +34,7 @@ const Form = ({ onMessageChange }) => {
       <form>
         <ChannelSelect onChannelChange={onChannelChange} />
 
-        <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
+        {/* <KeyboardSwitch onKeyboardChange={onKeyboardChange} /> */}
 
         <TextArea channel={channel} onMessageChange={onMessageChange} />
 
