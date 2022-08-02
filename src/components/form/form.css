@@ -7,7 +7,6 @@
 }
 
 .main__channel-select-wrap,
-.main__text-wrap,
 .main__switch-button-wrap,
 .main__buttons
  {
@@ -17,7 +16,7 @@
 
 
 .main__channel-select,
-.main__text {
+.main__textarea {
     width: 90%;
 }
 

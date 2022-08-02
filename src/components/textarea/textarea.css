@@ -1,0 +1,11 @@
+.main__textarea-wrap {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.main__textarea-wrap textarea {
+    width: 90%;
+    height: 100%;
+    box-sizing: border-box;
+}
