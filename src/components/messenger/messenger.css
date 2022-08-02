@@ -1,3 +1,9 @@
+.messenger-wrap {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+
 .messenger {
     width: 90%;
     min-height: 100px;

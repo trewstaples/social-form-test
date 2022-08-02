@@ -7,7 +7,6 @@ const App = () => {
       <header className='header'>
         <h1>Social Form</h1>
       </header>
-      <h2>Messanger Window</h2>
       <Messenger />
       <h2>Fill the form</h2>
       <Form />
