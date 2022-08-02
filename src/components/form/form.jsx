@@ -17,7 +17,7 @@ export const createNewButton = label => {
   return { value: label }
 }
 
-const Form = () => {
+const Form = ({ onMessageChange }) => {
   const [channel, setChannel] = useState('')
   const [keyboardMode, setKeyboardMode] = useState(keyboardLayout.standart)
   const [buttons, setButtons] = useState([])
@@ -47,7 +47,7 @@ const Form = () => {
 
         <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
-        <TextArea channel={channel} />
+        <TextArea channel={channel} onMessageChange={onMessageChange} />
 
         {/* <ButtonsList buttons={buttons} /> */}
 
