@@ -30,6 +30,7 @@ const Form = () => {
     setKeyboardMode(prevState =>
       prevState === keyboardLayout.standart ? keyboardLayout.inline : keyboardLayout.standart
     )
+    setButtons([])
   }
 
   const onButtonAdded = text => {
@@ -43,11 +44,11 @@ const Form = () => {
       <form>
         <ChannelSelect onChannelChange={onChannelChange} />
 
-        <TextArea channel={channel} />
-
         <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
-        <ButtonsList buttons={buttons} />
+        <TextArea channel={channel} buttons={buttons} />
+
+        {/* <ButtonsList buttons={buttons} /> */}
 
         <ButtonAddForm keyboardMode={keyboardLayout.standart} onButtonAdded={onButtonAdded} />
         <ButtonAddForm keyboardMode={keyboardLayout.inline} onButtonAdded={onButtonAdded} />

@@ -9,3 +9,12 @@
     height: 100%;
     box-sizing: border-box;
 }
+
+.main__textarea-wrap button {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    position: absolute;
+}
+

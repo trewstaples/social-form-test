@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react'
+import { ButtonsList } from '../buttons-list'
+
 import './textarea.css'
 
 const textAreaMaxLength = {
@@ -7,29 +10,24 @@ const textAreaMaxLength = {
   SMS: '',
 }
 
-let lastButtonWidth = 0
+const TextArea = ({ channel, buttons }) => {
+  const [currentButtonPosition, setCurrentButtonPosition] = useState(0)
 
-let buttonStartPosition = {
-  left: lastButtonWidth,
-}
+  // useEffect(() => {
+  //   const currentButtonState = document.querySelector('.main__buttons')
 
-const TextArea = ({ channel }) => {
+  //   console.log(currentButtonState.lastChild.style)
+  // })
+
   return (
     <div className='main__textarea-wrap'>
-      <textarea maxLength={textAreaMaxLength[channel]} name={'foo'}>
-        Введите сообщение...
-      </textarea>
-      <div className='main__textarea-buttons-wrap'>
-        <button style={{ position: 'absolute', bottom: 0, left: lastButtonWidth }}>Menu</button>
-        <button style={{ position: 'absolute', bottom: 0, left: lastButtonWidth + '56.5469px' }}>
-          PlaceholdeButton
-        </button>
-        <button style={{ position: 'absolute', bottom: 0, left: 150 }}>PlaceholdeButton</button>
-        <button style={{ position: 'absolute', bottom: 0, left: 300 }}>PlaceholdeButton</button>
-        <button style={{ position: 'absolute', bottom: 0, left: 400 }}>PlaceholdeButton</button>
-      </div>
+      <textarea maxLength={textAreaMaxLength[channel]}></textarea>
+      <ButtonsList buttons={buttons} currentButtonPosition={currentButtonPosition} />
     </div>
   )
 }
 
 export { TextArea }
+
+//Каждой новой кнопке передавать свои стили
+//Координаты каждой кнопки = длина ряда + длина новой кнопки
