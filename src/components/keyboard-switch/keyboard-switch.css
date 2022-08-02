@@ -1,12 +1,12 @@
 /* Switch Button */
-.keyboard-switch {
+.form__keyboard-switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;  
   }
   
-  .keyboard-switch input {
+  .form__keyboard-switch input {
     opacity: 0;
     width: 0;
     height: 0;
