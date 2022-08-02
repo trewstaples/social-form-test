@@ -8,7 +8,6 @@ const App = () => {
         <h1>Social Form</h1>
       </header>
       <Messenger />
-      <h2>Fill the form</h2>
       <Form />
     </div>
   )

@@ -40,13 +40,14 @@ const Form = () => {
   }
 
   return (
-    <div className='main'>
+    <div className='form-wrap'>
+      <h2>Fill the form</h2>
       <form>
         <ChannelSelect onChannelChange={onChannelChange} />
 
         <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
-        <TextArea channel={channel} buttons={buttons} />
+        <TextArea channel={channel} />
 
         {/* <ButtonsList buttons={buttons} /> */}
 
