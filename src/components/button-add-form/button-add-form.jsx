@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import { keyboardLayout } from '../form/form'
 
+import './button-add-form.css'
+
 const ButtonAddForm = ({ keyboardMode, onButtonAdded }) => {
   const [formValue, setFormValue] = useState('')
 
@@ -21,7 +23,7 @@ const ButtonAddForm = ({ keyboardMode, onButtonAdded }) => {
       : 'Добавьте кнопку-ссылку'
 
   return (
-    <div className='main__add-form'>
+    <div className='main__add'>
       <input
         type='text'
         className='main__add-form-control'
