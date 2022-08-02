@@ -6,17 +6,17 @@
     border: 2px solid orange;
 }
 
-.main__channel-select-wrap,
+.form__select-wrapper,
 .main__switch-button-wrap,
-.main__buttons
+.messenger__buttons
  {
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
 
-.main__channel-select,
-.main__textarea {
+.form__select,
+.form__textarea-wrapper {
     width: 90%;
 }
 

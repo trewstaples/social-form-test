@@ -2,9 +2,9 @@ import './keyboard-switch.css'
 
 const KeyboardSwitch = ({ onKeyboardChange }) => {
   return (
-    <div className='main__keyboard-switch-wrap'>
+    <div className='form__keyboard-switch-wrapper'>
       <span>Стандартная клавиатура</span>
-      <label className='keyboard-switch' onChange={onKeyboardChange}>
+      <label className='form__keyboard-switch' onChange={onKeyboardChange}>
         <input type='checkbox' />
         <span className='slider'></span>
       </label>

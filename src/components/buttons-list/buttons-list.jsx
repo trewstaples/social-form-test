@@ -7,7 +7,7 @@ const ButtonsList = ({ buttons }) => {
     )
   })
 
-  return <div className='main__buttons'>{elements}</div>
+  return <div className='messenger__buttons'>{elements}</div>
 }
 
 export { ButtonsList }

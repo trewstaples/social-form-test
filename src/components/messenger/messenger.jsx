@@ -4,7 +4,7 @@ import './messenger.css'
 
 const Messenger = ({ messageText, buttons }) => {
   return (
-    <div className='messenger-wrap'>
+    <div className='messenger-wrapper'>
       <h2>Messanger Window</h2>
       <div className='messenger'>
         <div>{messageText}</div>

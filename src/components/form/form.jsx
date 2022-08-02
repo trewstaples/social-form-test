@@ -4,13 +4,18 @@ import { ChannelSelect } from '../channel-select'
 import { TextArea } from '../textarea'
 import { KeyboardSwitch } from '../keyboard-switch'
 import { ButtonsList } from '../buttons-list'
-import { ButtonAddForm } from '../button-add-form'
+import { ButtonAddForm } from '../button-add'
 
 import './form.css'
 
-export const keyboardLayout = {
+const keyboardLayout = {
   standart: 'standart',
   inline: 'inline',
+}
+
+export const buttonTypes = {
+  classic: 'classic',
+  url: 'url',
 }
 
 const Form = ({ onMessageChange, onButtonAdded }) => {
@@ -29,7 +34,7 @@ const Form = ({ onMessageChange, onButtonAdded }) => {
   // }
 
   return (
-    <div className='form-wrap'>
+    <div className='form-wrapper'>
       <h2>Settings</h2>
       <form>
         <ChannelSelect onChannelChange={onChannelChange} />
@@ -40,8 +45,8 @@ const Form = ({ onMessageChange, onButtonAdded }) => {
 
         {/* <ButtonsList buttons={buttons} /> */}
 
-        <ButtonAddForm keyboardMode={keyboardLayout.standart} onButtonAdded={onButtonAdded} />
-        <ButtonAddForm keyboardMode={keyboardLayout.inline} onButtonAdded={onButtonAdded} />
+        <ButtonAddForm buttonType={buttonTypes.classic} onButtonAdded={onButtonAdded} />
+        <ButtonAddForm buttonType={buttonTypes.url} onButtonAdded={onButtonAdded} />
       </form>
     </div>
   )

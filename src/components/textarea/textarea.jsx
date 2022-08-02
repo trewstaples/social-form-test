@@ -9,7 +9,7 @@ const textAreaMaxLength = {
 
 const TextArea = ({ channel, onMessageChange }) => {
   return (
-    <div className='main__textarea-wrap'>
+    <div className='form__textarea-wrapper'>
       <textarea maxLength={textAreaMaxLength[channel]} onChange={onMessageChange}></textarea>
     </div>
   )

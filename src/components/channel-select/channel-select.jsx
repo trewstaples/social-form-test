@@ -1,7 +1,7 @@
 const ChannelSelect = ({ onChannelChange }) => {
   return (
-    <div className='main__channel-select-wrap'>
-      <select className='main__channel-select' onChange={onChannelChange}>
+    <div className='form__select-wrapper'>
+      <select className='form__select' onChange={onChannelChange}>
         <option value=''>Выберите канал</option>
         <option value='VK'>Вконтакте</option>
         <option value='WhatsApp'>WhatsApp</option>
