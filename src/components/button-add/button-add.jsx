@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { buttonTypes } from '../../utils'
 
@@ -9,8 +9,10 @@ export const buttonClassnames = {
   url: 'form__button--url',
 }
 
-const ButtonAdd = ({ buttonType, onButtonAdded }) => {
-  const [buttonValue, setButtonValue] = useState({ buttonType: '', value: '' })
+const buttonInitialState = { buttonType: '', value: '' }
+
+const ButtonAdd = ({ buttonType, onButtonAdded, buttonsMaxLength }) => {
+  const [buttonValue, setButtonValue] = useState(buttonInitialState)
 
   const isButtonClassic = buttonType === buttonTypes.classic
 
@@ -20,6 +22,10 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
     ? 'Добавьте кнопку с быстрым ответом'
     : 'Впишите URL-кнопки'
 
+  useEffect(() => {
+    setButtonValue(buttonInitialState)
+  }, [buttonsMaxLength])
+
   const onClick = evt => {
     evt.preventDefault()
     onButtonAdded(buttonValue)
@@ -27,7 +33,10 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
   }
 
   const onLabelChange = evt => {
-    setButtonValue({ buttonType: evt.target.className, value: evt.target.value })
+    setButtonValue({
+      buttonType: evt.target.className,
+      value: evt.target.value,
+    })
   }
 
   return (
@@ -38,6 +47,7 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
         value={buttonValue.value}
         onChange={onLabelChange}
         placeholder={placeholderText}
+        maxLength={buttonsMaxLength}
       />
 
       <input type='submit' className='btn form__button-add-plus' value={'+'} onClick={onClick} />

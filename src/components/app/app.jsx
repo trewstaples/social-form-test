@@ -14,38 +14,36 @@ import './app.css'
 const standartRestrictions = {
   VK: {
     name: 'Вконтакте',
-    maxBtnCount: '4', //40
-    maxBtnLength: '',
+    maxBtnCount: '40',
+    maxBtnLength: '-',
     urlBtn: true,
   },
   WHATSAPP: {
     name: 'WhatsApp',
-    maxBtnCount: '1', //
+    maxBtnCount: '10',
     maxBtnLength: '20',
     urlBtn: false,
   },
   TELEGRAM: {
     name: 'Telegram',
-    maxBtnCount: '',
-    maxBtnLength: '',
+    maxBtnCount: '-',
+    maxBtnLength: '-',
     urlBtn: false,
   },
   SMS: {
     name: 'SMS',
     maxBtnCount: 0,
-    maxBtnLength: '',
-    urlBtn: '',
+    maxBtnLength: '-',
+    urlBtn: false,
   },
 }
-
-//maxBtn - ограничение длины массива buttons. Если длина массива кнопок равна 40, то бросать alert (максимум достигнут)
-//Если канал SMS, то длина кнопок равна 0 и бросать alert (кнопки не поддерживаются)
 
 const App = () => {
   const [keyboardMode, setKeyboardMode] = useState(keyboardMarkup.standart)
   const [channel, setChannel] = useState('')
   const [textareaValue, setTextareaValue] = useState('')
   const [buttons, setButtons] = useState([])
+  const [buttonsMaxLength, setButtonsMaxLength] = useState('')
 
   const onKeyboardChange = () => {
     setKeyboardMode(prevState =>
@@ -56,6 +54,7 @@ const App = () => {
 
   const onChannelChange = evt => {
     setChannel(evt.target.value)
+    setButtonsMaxLength(standartRestrictions[evt.target.value].maxBtnLength)
     setButtons([])
   }
 
@@ -69,7 +68,10 @@ const App = () => {
 
   const onButtonAdded = btn => {
     const newButton = createNewButton(btn)
-    if (buttons.length < standartRestrictions[channel].maxBtnCount) {
+    if (
+      buttons.length < standartRestrictions[channel].maxBtnCount ||
+      standartRestrictions[channel].maxBtnCount === '-'
+    ) {
       return setButtons([...buttons, newButton])
     }
     alert(
@@ -86,14 +88,18 @@ const App = () => {
 
       <div className='form-wrapper'>
         <h2>Settings</h2>
-        <form>
-          <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
-          <ChannelSelect onChannelChange={onChannelChange} />
+        <ChannelSelect onChannelChange={onChannelChange} />
+        <form className={'form'}>
+          <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
           <TextArea channel={channel} onTextareaChange={onTextareaChange} />
 
-          <ButtonAdd buttonType={buttonTypes.classic} onButtonAdded={onButtonAdded} />
+          <ButtonAdd
+            buttonType={buttonTypes.classic}
+            onButtonAdded={onButtonAdded}
+            buttonsMaxLength={buttonsMaxLength}
+          />
           <ButtonAdd buttonType={buttonTypes.url} onButtonAdded={onButtonAdded} />
         </form>
       </div>
