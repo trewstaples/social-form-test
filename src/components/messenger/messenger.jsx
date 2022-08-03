@@ -1,15 +1,28 @@
 import { ButtonsList } from '../buttons-list'
+import { keyboardMarkup } from '../app/app'
 
 import './messenger.css'
 
-const Messenger = ({ messageText, buttons }) => {
+const Messenger = ({ messageText, keyboardMode, buttons }) => {
+  const messengerMarkup =
+    keyboardMode === keyboardMarkup.standart ? (
+      <>
+        <div className='messenger'>
+          <div>{messageText}</div>
+        </div>
+        <ButtonsList buttons={buttons} />
+      </>
+    ) : (
+      <div className='messenger'>
+        <div>{messageText}</div>
+        <ButtonsList buttons={buttons} />
+      </div>
+    )
+
   return (
     <div className='messenger-wrapper'>
       <h2>Messanger Window</h2>
-      <div className='messenger'>
-        <div>{messageText}</div>
-      </div>
-      <ButtonsList buttons={buttons} />
+      {messengerMarkup}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { buttonClassnames } from '../button-add/button-add'
 
 const ButtonsListItem = ({ btn }) => {
-  const buttonLayout =
+  const buttonMarkup =
     btn.type === buttonClassnames.classic ? (
       <button type='button' className={`btn ${btn.type}`}>
         {btn.value}
@@ -12,7 +12,7 @@ const ButtonsListItem = ({ btn }) => {
       </a>
     )
 
-  return buttonLayout
+  return buttonMarkup
 }
 
 export { ButtonsListItem }

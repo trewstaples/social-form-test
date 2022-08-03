@@ -8,7 +8,7 @@ import { Messenger } from '../messenger'
 
 import './app.css'
 
-const keyboardLayout = {
+export const keyboardMarkup = {
   standart: 'standart',
   inline: 'inline',
 }
@@ -19,14 +19,14 @@ export const buttonTypes = {
 }
 
 const App = () => {
-  const [keyboardMode, setKeyboardMode] = useState(keyboardLayout.standart)
+  const [keyboardMode, setKeyboardMode] = useState(keyboardMarkup.standart)
   const [channel, setChannel] = useState('')
   const [textareaValue, setTextareaValue] = useState('')
   const [buttons, setButtons] = useState([])
 
   const onKeyboardChange = () => {
     setKeyboardMode(prevState =>
-      prevState === keyboardLayout.standart ? keyboardLayout.inline : keyboardLayout.standart
+      prevState === keyboardMarkup.standart ? keyboardMarkup.inline : keyboardMarkup.standart
     )
     setButtons([])
   }
@@ -53,7 +53,7 @@ const App = () => {
       <header className='header'>
         <h1>Social Form</h1>
       </header>
-      <Messenger messageText={textareaValue} buttons={buttons} />
+      <Messenger messageText={textareaValue} keyboardMode={keyboardMode} buttons={buttons} />
 
       <div className='form-wrapper'>
         <h2>Settings</h2>
