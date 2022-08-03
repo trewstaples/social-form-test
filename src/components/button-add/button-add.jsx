@@ -5,12 +5,12 @@ import { buttonTypes } from '../form/form'
 import './button-add.css'
 
 const buttonClassnames = {
-  classic: 'form__button-add-text--classic',
-  url: 'form__button-add-text--url',
+  classic: 'form__button--classic',
+  url: 'form__button--url',
 }
 
 const ButtonAdd = ({ buttonType, onButtonAdded }) => {
-  const [formValue, setFormValue] = useState('')
+  const [buttonValue, setButtonValue] = useState({ buttonType: '', value: '' })
 
   const isButtonClassic = buttonType === buttonTypes.classic
 
@@ -22,12 +22,12 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
 
   const onClick = evt => {
     evt.preventDefault()
-    onButtonAdded(formValue)
-    setFormValue('')
+    onButtonAdded(buttonValue)
+    setButtonValue({ buttonType: '', value: '' })
   }
 
   const onLabelChange = evt => {
-    setFormValue(evt.target.value)
+    setButtonValue({ buttonType: evt.target.className, value: evt.target.value })
   }
 
   return (
@@ -35,7 +35,7 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
       <input
         type='text'
         className={buttonClassname}
-        value={formValue}
+        value={buttonValue.value}
         onChange={onLabelChange}
         placeholder={placeholderText}
       />
@@ -45,4 +45,4 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
   )
 }
 
-export { ButtonAdd as ButtonAddForm }
+export { ButtonAdd }

@@ -4,7 +4,7 @@ import { ChannelSelect } from '../channel-select'
 import { TextArea } from '../textarea'
 import { KeyboardSwitch } from '../keyboard-switch'
 import { ButtonsList } from '../buttons-list'
-import { ButtonAddForm } from '../button-add'
+import { ButtonAdd } from '../button-add'
 
 import './form.css'
 
@@ -45,8 +45,8 @@ const Form = ({ onMessageChange, onButtonAdded }) => {
 
         {/* <ButtonsList buttons={buttons} /> */}
 
-        <ButtonAddForm buttonType={buttonTypes.classic} onButtonAdded={onButtonAdded} />
-        <ButtonAddForm buttonType={buttonTypes.url} onButtonAdded={onButtonAdded} />
+        <ButtonAdd buttonType={buttonTypes.classic} onButtonAdded={onButtonAdded} />
+        <ButtonAdd buttonType={buttonTypes.url} onButtonAdded={onButtonAdded} />
       </form>
     </div>
   )
