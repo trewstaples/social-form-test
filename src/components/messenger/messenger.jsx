@@ -1,5 +1,5 @@
-import { ButtonsList } from '../buttons-list'
 import { keyboardMarkup } from '../../utils'
+import { ButtonsList } from '../buttons-list'
 
 import './messenger.css'
 

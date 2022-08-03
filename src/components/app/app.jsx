@@ -76,12 +76,13 @@ const App = () => {
       <header className='header'>
         <h1>Social Form</h1>
       </header>
+
       <Messenger messageText={textareaValue} keyboardMode={keyboardMode} buttons={buttons} />
 
       <div className='form-wrapper'>
         <h2>Settings</h2>
-
         <ChannelSelect onChannelChange={onChannelChange} />
+
         <form className={'form'}>
           <KeyboardSwitch onKeyboardChange={onKeyboardChange} />
 
