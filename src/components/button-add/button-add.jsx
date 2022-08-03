@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react'
 
-import { buttonTypes } from '../../utils'
+import { buttonTypes, buttonClassnames } from '../../utils'
 
 import './button-add.css'
-
-export const buttonClassnames = {
-  classic: 'form__button--classic',
-  url: 'form__button--url',
-}
 
 const buttonInitialState = { buttonType: '', value: '' }
 

@@ -3,6 +3,11 @@ export const keyboardMarkup = {
   inline: 'inline',
 }
 
+export const buttonClassnames = {
+  classic: 'form__button--classic',
+  url: 'form__button--url',
+}
+
 export const buttonTypes = {
   classic: 'classic',
   url: 'url',

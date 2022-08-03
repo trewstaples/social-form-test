@@ -1,6 +1,12 @@
 import { useState } from 'react'
 
-import { keyboardMarkup, buttonTypes, standartRestrictions, inlineRestrictions } from '../../utils'
+import {
+  keyboardMarkup,
+  buttonTypes,
+  buttonClassnames,
+  standartRestrictions,
+  inlineRestrictions,
+} from '../../utils'
 
 import { KeyboardSwitch } from '../keyboard-switch'
 import { ChannelSelect } from '../channel-select'
@@ -42,7 +48,18 @@ const App = () => {
   }
 
   const onButtonAdded = btn => {
+    if (channel === 'WHATSAPP' && keyboardMode === keyboardMarkup.inline) {
+      console.log(buttons)
+      const isUrlButtonsEnough = buttons.find(button => button.type === buttonClassnames.url)
+      console.log(isUrlButtonsEnough)
+      if (isUrlButtonsEnough) {
+        alert('Максимальное количество url-кнопок в режиме WhatsApp : 1шт')
+        return
+      }
+    }
+
     const newButton = createNewButton(btn)
+
     if (
       buttons.length < restrictionRules[channel].maxBtnCount ||
       restrictionRules[channel].maxBtnCount === '-'
@@ -50,7 +67,7 @@ const App = () => {
       return setButtons([...buttons, newButton])
     }
     alert(
-      `Максимальное количество кнопок в режиме ${standartRestrictions[channel].name} : ${restrictionRules[channel].maxBtnCount}шт`
+      `Максимальное количество кнопок в режиме ${restrictionRules[channel].name} : ${restrictionRules[channel].maxBtnCount}шт`
     )
     return
   }
