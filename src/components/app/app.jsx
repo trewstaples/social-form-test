@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-import { keyboardMarkup } from '../../utils'
-import { buttonTypes } from '../../utils'
+import { keyboardMarkup, buttonTypes, standartRestrictions, inlineRestrictions } from '../../utils'
 
 import { KeyboardSwitch } from '../keyboard-switch'
 import { ChannelSelect } from '../channel-select'
@@ -11,39 +10,15 @@ import { Messenger } from '../messenger'
 
 import './app.css'
 
-const standartRestrictions = {
-  VK: {
-    name: 'Вконтакте',
-    maxBtnCount: '40',
-    maxBtnLength: '-',
-    urlBtn: true,
-  },
-  WHATSAPP: {
-    name: 'WhatsApp',
-    maxBtnCount: '10',
-    maxBtnLength: '20',
-    urlBtn: false,
-  },
-  TELEGRAM: {
-    name: 'Telegram',
-    maxBtnCount: '-',
-    maxBtnLength: '-',
-    urlBtn: false,
-  },
-  SMS: {
-    name: 'SMS',
-    maxBtnCount: 0,
-    maxBtnLength: '-',
-    urlBtn: false,
-  },
-}
-
 const App = () => {
   const [keyboardMode, setKeyboardMode] = useState(keyboardMarkup.standart)
   const [channel, setChannel] = useState('VK')
   const [textareaValue, setTextareaValue] = useState('')
   const [buttons, setButtons] = useState([])
   const [buttonsMaxLength, setButtonsMaxLength] = useState('')
+
+  let restrictionRules =
+    keyboardMode === keyboardMarkup.standart ? standartRestrictions : inlineRestrictions
 
   const onKeyboardChange = () => {
     setKeyboardMode(prevState =>
@@ -54,7 +29,7 @@ const App = () => {
 
   const onChannelChange = evt => {
     setChannel(evt.target.value)
-    setButtonsMaxLength(standartRestrictions[evt.target.value].maxBtnLength)
+    setButtonsMaxLength(restrictionRules[channel].maxBtnLength)
     setButtons([])
   }
 
@@ -69,13 +44,13 @@ const App = () => {
   const onButtonAdded = btn => {
     const newButton = createNewButton(btn)
     if (
-      buttons.length < standartRestrictions[channel].maxBtnCount ||
-      standartRestrictions[channel].maxBtnCount === '-'
+      buttons.length < restrictionRules[channel].maxBtnCount ||
+      restrictionRules[channel].maxBtnCount === '-'
     ) {
       return setButtons([...buttons, newButton])
     }
     alert(
-      `В режиме ${standartRestrictions[channel].name} поддерживается максимум ${standartRestrictions[channel].maxBtnCount} кнопок`
+      `Максимальное количество кнопок в режиме ${standartRestrictions[channel].name} : ${restrictionRules[channel].maxBtnCount}шт`
     )
     return
   }
@@ -101,7 +76,7 @@ const App = () => {
             buttonsMaxLength={buttonsMaxLength}
           />
 
-          {standartRestrictions[channel].urlBtn ? (
+          {restrictionRules[channel].urlBtn ? (
             <ButtonAdd buttonType={buttonTypes.url} onButtonAdded={onButtonAdded} />
           ) : (
             ''

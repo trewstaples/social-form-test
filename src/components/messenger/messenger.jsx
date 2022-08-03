@@ -21,7 +21,7 @@ const Messenger = ({ messageText, keyboardMode, buttons }) => {
 
   return (
     <div className='messenger-wrapper'>
-      <h2>Messanger Window</h2>
+      <h2>Messenger Window</h2>
       {messengerMarkup}
     </div>
   )
