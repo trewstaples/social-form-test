@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+import { keyboardMarkup } from '../../utils'
+import { buttonTypes } from '../../utils'
+
 import { KeyboardSwitch } from '../keyboard-switch'
 import { ChannelSelect } from '../channel-select'
 import { TextArea } from '../textarea'
@@ -7,16 +10,6 @@ import { ButtonAdd } from '../button-add'
 import { Messenger } from '../messenger'
 
 import './app.css'
-
-export const keyboardMarkup = {
-  standart: 'standart',
-  inline: 'inline',
-}
-
-export const buttonTypes = {
-  classic: 'classic',
-  url: 'url',
-}
 
 const App = () => {
   const [keyboardMode, setKeyboardMode] = useState(keyboardMarkup.standart)

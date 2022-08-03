@@ -2,7 +2,7 @@ import './textarea.css'
 
 const textAreaMaxLength = {
   VK: '4096',
-  WhatsApp: '10',
+  WhatsApp: '1000',
   Telegram: '4096',
   SMS: '',
 }
