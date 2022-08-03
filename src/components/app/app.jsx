@@ -40,7 +40,7 @@ const standartRestrictions = {
 
 const App = () => {
   const [keyboardMode, setKeyboardMode] = useState(keyboardMarkup.standart)
-  const [channel, setChannel] = useState('')
+  const [channel, setChannel] = useState('VK')
   const [textareaValue, setTextareaValue] = useState('')
   const [buttons, setButtons] = useState([])
   const [buttonsMaxLength, setButtonsMaxLength] = useState('')
@@ -100,7 +100,12 @@ const App = () => {
             onButtonAdded={onButtonAdded}
             buttonsMaxLength={buttonsMaxLength}
           />
-          <ButtonAdd buttonType={buttonTypes.url} onButtonAdded={onButtonAdded} />
+
+          {standartRestrictions[channel].urlBtn ? (
+            <ButtonAdd buttonType={buttonTypes.url} onButtonAdded={onButtonAdded} />
+          ) : (
+            ''
+          )}
         </form>
       </div>
     </div>
