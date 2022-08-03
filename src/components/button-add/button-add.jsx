@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { buttonTypes } from '../form/form'
+import { buttonTypes } from '../app/app'
 
 import './button-add.css'
 

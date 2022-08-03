@@ -7,10 +7,10 @@ const textAreaMaxLength = {
   SMS: '',
 }
 
-const TextArea = ({ channel, onMessageChange }) => {
+const TextArea = ({ channel, onTextareaChange }) => {
   return (
     <div className='form__textarea-wrapper'>
-      <textarea maxLength={textAreaMaxLength[channel]} onChange={onMessageChange}></textarea>
+      <textarea maxLength={textAreaMaxLength[channel]} onChange={onTextareaChange}></textarea>
     </div>
   )
 }
