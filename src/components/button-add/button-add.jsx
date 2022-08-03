@@ -10,7 +10,7 @@ const buttonClassnames = {
 }
 
 const ButtonAdd = ({ buttonType, onButtonAdded }) => {
-  const [formValue, setFormValue] = useState({ type: '', value: '' })
+  const [formValue, setFormValue] = useState('')
 
   const isButtonClassic = buttonType === buttonTypes.classic
 
@@ -27,8 +27,7 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
   }
 
   const onLabelChange = evt => {
-    setFormValue({ type: evt.target.className, value: evt.target.value })
-    console.log(formValue)
+    setFormValue(evt.target.value)
   }
 
   return (
@@ -36,7 +35,7 @@ const ButtonAdd = ({ buttonType, onButtonAdded }) => {
       <input
         type='text'
         className={buttonClassname}
-        value={formValue.value}
+        value={formValue}
         onChange={onLabelChange}
         placeholder={placeholderText}
       />

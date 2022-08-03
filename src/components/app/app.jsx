@@ -6,9 +6,8 @@ const App = () => {
   const [messageText, setMessageText] = useState('')
   const [buttons, setButtons] = useState([])
 
-  const createNewButton = btn => {
-    console.log(btn.className)
-    return { value: btn.label }
+  const createNewButton = label => {
+    return { value: label }
   }
 
   const onMessageChange = evt => {

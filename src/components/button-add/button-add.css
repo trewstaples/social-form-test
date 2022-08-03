@@ -1,3 +1,4 @@
-.form__button-add-text {
+.form__button-add-text--classic,
+.form__button-add-text--url {
 width: 92%;
 }
