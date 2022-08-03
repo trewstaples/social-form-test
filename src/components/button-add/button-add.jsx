@@ -4,7 +4,7 @@ import { buttonTypes } from '../form/form'
 
 import './button-add.css'
 
-const buttonClassnames = {
+export const buttonClassnames = {
   classic: 'form__button--classic',
   url: 'form__button--url',
 }
