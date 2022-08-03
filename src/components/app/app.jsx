@@ -11,6 +11,36 @@ import { Messenger } from '../messenger'
 
 import './app.css'
 
+const standartRestrictions = {
+  VK: {
+    name: 'Вконтакте',
+    maxBtnCount: '4', //40
+    maxBtnLength: '',
+    urlBtn: true,
+  },
+  WHATSAPP: {
+    name: 'WhatsApp',
+    maxBtnCount: '1', //
+    maxBtnLength: '20',
+    urlBtn: false,
+  },
+  TELEGRAM: {
+    name: 'Telegram',
+    maxBtnCount: '',
+    maxBtnLength: '',
+    urlBtn: false,
+  },
+  SMS: {
+    name: 'SMS',
+    maxBtnCount: 0,
+    maxBtnLength: '',
+    urlBtn: '',
+  },
+}
+
+//maxBtn - ограничение длины массива buttons. Если длина массива кнопок равна 40, то бросать alert (максимум достигнут)
+//Если канал SMS, то длина кнопок равна 0 и бросать alert (кнопки не поддерживаются)
+
 const App = () => {
   const [keyboardMode, setKeyboardMode] = useState(keyboardMarkup.standart)
   const [channel, setChannel] = useState('')
@@ -26,6 +56,7 @@ const App = () => {
 
   const onChannelChange = evt => {
     setChannel(evt.target.value)
+    setButtons([])
   }
 
   const onTextareaChange = evt => {
@@ -38,8 +69,13 @@ const App = () => {
 
   const onButtonAdded = btn => {
     const newButton = createNewButton(btn)
-
-    return setButtons([...buttons, newButton])
+    if (buttons.length < standartRestrictions[channel].maxBtnCount) {
+      return setButtons([...buttons, newButton])
+    }
+    alert(
+      `В режиме ${standartRestrictions[channel].name} поддерживается максимум ${standartRestrictions[channel].maxBtnCount} кнопок`
+    )
+    return
   }
   return (
     <div className='container'>
